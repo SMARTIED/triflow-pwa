@@ -1,0 +1,67 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0b3c5d;
+  color: white;
+}
+
+/* HERO */
+.hero-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* LOGO */
+.hero-logo {
+  width: 80vw;
+  max-width: 420px;
+  height: auto;
+}
+
+/* TEXT */
+.tagline {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+.welcome-title {
+  margin-top: 1.8rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.welcome-title strong {
+  font-weight: 800;
+}
+
+.welcome-subtitle {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #d1fae5;
+  max-width: 320px;
+}
+
+/* BUTTON */
+.primary-btn {
+  margin-top: 2rem;
+  padding: 0.9rem 2.5rem;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: none;
+  background: #14b8a6;
+  color: #022c22;
+  font-weight: 700;
+}
