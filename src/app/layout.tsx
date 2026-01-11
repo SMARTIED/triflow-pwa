@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import "../styles/globals.scss";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "TriFlow Plumbing",
-  description: "Your trusted online plumbing store",
-  themeColor: "#0b3c5d",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "TriFlow Plumbing",
-  },
+  description: "Three Minds. One Powerful Flow."
+};
 };
 
 export default function RootLayout({
