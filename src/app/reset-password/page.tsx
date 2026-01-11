@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
+import { useState } from "react";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleReset = async () => {
+  async function reset() {
     try {
       await sendPasswordResetEmail(auth, email);
-      setMsg("Password reset email sent.");
-    } catch {
-      setMsg("Failed to send reset email.");
+      setMessage("Password reset email sent.");
+    } catch (err: any) {
+      setMessage(err.message);
     }
-  };
+  }
 
   return (
     <div className="page">
       <h1>Reset Password</h1>
       <input
-        type="email"
-        placeholder="Your email"
-        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
       />
-      <button className="btn" onClick={handleReset}>Send Reset</button>
-      <p>{msg}</p>
+      <button className="btn" onClick={reset}>Send Reset Link</button>
+      <p>{message}</p>
     </div>
   );
 }
