@@ -1,40 +1,42 @@
 'use client';
 
-export const dynamic = "force-dynamic";
-
-import { useEffect, useState } from "react";
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../../../firebase/firebaseConfig";
+import { useState } from "react";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    // This forces Firebase to only load in the browser
-    if (typeof window === "undefined") return;
-  }, []);
-
-  async function reset() {
+  const handleReset = async () => {
     try {
+      const { getAuth, sendPasswordResetEmail } = await import("firebase/auth");
+      const { app } = await import("../../../firebase/firebaseConfig");
+
+      const auth = getAuth(app);
+
       await sendPasswordResetEmail(auth, email);
       setMessage("Password reset email sent.");
     } catch (err: any) {
-      setMessage(err.message);
+      setMessage(err.message || "Failed to send reset email");
     }
-  }
+  };
 
   return (
-    <div className="page">
-      <h1>Reset Password</h1>
+    <div className="p-6 max-w-md mx-auto">
+      <h1 className="text-xl mb-4">Reset Password</h1>
       <input
         type="email"
         placeholder="Email"
+        className="border p-2 w-full mb-4"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
-      <button className="btn" onClick={reset}>Send Reset</button>
-      <p>{message}</p>
+      <button
+        onClick={handleReset}
+        className="bg-blue-600 text-white p-2 w-full"
+      >
+        Send reset email
+      </button>
+      {message && <p className="mt-4">{message}</p>}
     </div>
   );
 }
