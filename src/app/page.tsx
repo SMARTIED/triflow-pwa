@@ -4,25 +4,25 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="hero-container">
-      <Image
+      <Image 
         src="/logo.png"
-        alt="TriFlow Logo"
-        width={420}
-        height={200}
-        className="hero-logo"
+        alt="TriFlow Plumbing"
+        width={300}
+        height={160}
         priority
+        className="hero-logo"
       />
 
       <h1 className="welcome-title">
-        Welcome to <strong>TriFlow Plumbing</strong>
+        <strong>Welcome to TriFlow Plumbing</strong>
       </h1>
 
       <p className="welcome-subtitle">
-        Three minds. One powerful flow. Professional plumbing supplies delivered to your door.
+        Your trusted online plumbing store for pipes, taps and more.
       </p>
 
-      <Link href="/shop" className="primary-btn">
-        Shop Now
+      <Link href="/shop">
+        <button className="primary-btn">Shop Now</button>
       </Link>
     </div>
   );
