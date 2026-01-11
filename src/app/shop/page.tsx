@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+
 /* ✅ PRODUCTS MUST BE HERE */
 const products = [
   {
@@ -8,7 +9,7 @@ const products = [
     diameter: "20mm",
     length: "1m",
     price: 120,
-    image: "/images/copper-pipe.jpg",
+    image: "/images/products/copper-pipe-20mm.jpg",
   },
   {
     id: 2,
@@ -16,9 +17,18 @@ const products = [
     diameter: "25mm",
     length: "1m",
     price: 45,
-    image: "/images/pvc-pipe.jpg",
+    image: "/images/products/pvc-pipe-25mm.jpg",
+  },
+  {
+    id: 3,
+    description: "Ball Valve",
+    diameter: '½"',
+    length: "-",
+    price: 89,
+    image: "/images/products/ball-valve-half-inch.jpg",
   },
 ];
+
 
 /* ✅ COMPONENT BELOW */
 export default function ShopPage() {
