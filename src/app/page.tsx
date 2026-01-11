@@ -1,28 +1,29 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="hero-container">
+    <div className="hero-container">
       <Image
-        src="/logo-hero.png"
-        alt="TriFlow Plumbing"
+        src="/logo.png"
+        alt="TriFlow Logo"
         width={420}
-        height={420}
-        priority
+        height={200}
         className="hero-logo"
+        priority
       />
 
-      <p className="welcome-title">
+      <h1 className="welcome-title">
         Welcome to <strong>TriFlow Plumbing</strong>
-      </p>
+      </h1>
 
       <p className="welcome-subtitle">
-        Your trusted online plumbing store for pipes, taps and more.
+        Three minds. One powerful flow. Professional plumbing supplies delivered to your door.
       </p>
 
-      <button className="primary-btn">
+      <Link href="/shop" className="primary-btn">
         Shop Now
-      </button>
-    </main>
+      </Link>
+    </div>
   );
 }

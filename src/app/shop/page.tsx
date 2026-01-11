@@ -1,44 +1,29 @@
-'use client';
+import Link from "next/link";
 
-import { useEffect, useState } from 'react';
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase/firebaseConfig";
+const products = [
+  { id: 1, name: "Copper Pipe 1m", price: 120 },
+  { id: 2, name: "PVC Pipe 1m", price: 45 },
+  { id: 3, name: "Ball Valve ½\"", price: 89 },
+  { id: 4, name: "Mixer Tap", price: 650 },
+];
 
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-};
-
-export default function Shop() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      const productsCollection = collection(db, 'products');
-      const snapshot = await getDocs(productsCollection);
-      const data = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...(doc.data() as Product),
-      }));
-      setProducts(data);
-    }
-    fetchProducts();
-  }, []);
-
+export default function ShopPage() {
   return (
-    <div>
-      <h1>Shop Products</h1>
-      {products.length === 0 ? (
-        <p>Loading products...</p>
-      ) : (
-        products.map(p => (
-          <div key={p.id} style={{ marginBottom: '1rem', borderBottom: '1px solid #ccc', paddingBottom: '0.5rem' }}>
-            <h2>{p.name}</h2>
-            <p>R{p.price}</p>
-          </div>
-        ))
-      )}
+    <div className="page">
+      <h1>TriFlow Plumbing Store</h1>
+      <p>Professional plumbing supplies</p>
+
+      {products.map((item) => (
+        <div key={item.id} className="product">
+          <span>
+            {item.name} — <strong>R{item.price}</strong>
+          </span>
+
+          <Link href="/register" className="buy">
+            Buy
+          </Link>
+        </div>
+      ))}
     </div>
   );
 }
