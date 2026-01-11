@@ -66,22 +66,44 @@ html, body {
   padding: 2rem;
 }
 
-/* SHOP */
-.product {
-  background: #082f49;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* SHOP (Grid Layout) */
+.shop-page {
+  padding: 2rem;
 }
 
-.buy {
-  color: #14b8a6;
+.product-grid {
+  display: grid;
+  grid-template-columns: 80px 2fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #082f49;
+  border-radius: 10px;
+}
+
+.product-grid.header {
+  font-weight: bold;
+  background: #0f172a;
+}
+
+.product-grid img {
+  width: 60px;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Buy button (override safely) */
+.product-grid .buy {
+  background: #14b8a6;
+  color: #022c22;
+  padding: 6px 14px;
+  text-align: center;
+  border-radius: 999px;
   font-weight: 700;
   text-decoration: none;
 }
+
 input {
   width: 100%;
   padding: 12px;
