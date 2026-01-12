@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -14,11 +12,16 @@ export default function RegisterPage() {
     setError("");
 
     try {
+      const { auth } = await import("@/lib/firebase");
+      const { createUserWithEmailAndPassword } = await import("firebase/auth");
+
       await createUserWithEmailAndPassword(auth, email, password);
-      alert("Account created!");
+
+      alert("Account created");
       window.location.href = "/shop";
     } catch (err: any) {
-      setError(err.message);
+      console.error(err);
+      setError("Firebase auth failed");
     }
   };
 
@@ -43,7 +46,7 @@ export default function RegisterPage() {
           required
         />
 
-        {error && <p className="error">{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
         <button type="submit">Register</button>
       </form>
