@@ -49,6 +49,40 @@ export default function SupportPage() {
         />
         <button onClick={sendMessage}>Send</button>
       </div>
+<div className="support-actions">
+  <p>Need urgent help?</p>
+
+  <a
+    href="https://wa.me/27845431116"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="whatsapp-link"
+  >
+    💬 Chat with Support on WhatsApp
+  </a>
+<a
+        href="https://wa.me/27834303299"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="support-link"
+      >
+        💬 Chat with Support
+      </a>
+      <a
+        href="https://wa.me/27614330718"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="support-link"
+      >
+        💬 Chat with Support
+      </a>
+
+  <p className="support-note">
+    Our chatbot assists with general questions. For account, payment, or
+    order issues, please contact human support.
+  </p>
+</div>
+
     </div>
   );
 }

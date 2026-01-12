@@ -89,8 +89,8 @@ html, body {
 
 .product-grid img {
   width: 60px;
-  height: auto;
-  border-radius: 6px;
+  height: 60px;
+  object-fit: contain;
 }
 
 /* Buy button (override safely) */

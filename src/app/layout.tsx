@@ -1,4 +1,6 @@
 import "../styles/globals.scss";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "TriFlow Plumbing",
@@ -17,7 +19,17 @@ export default function RootLayout({
         <meta name="theme-color" content="#0b3c5d" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
-      <body>{children}</body>
+
+      <body>
+        {/* GLOBAL HEADER */}
+        <Header />
+
+        {/* PAGE CONTENT */}
+        <main>{children}</main>
+
+        {/* GLOBAL FOOTER */}
+        <Footer />
+      </body>
     </html>
   );
 }
