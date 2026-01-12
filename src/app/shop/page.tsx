@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-
-/* ✅ PRODUCTS MUST BE HERE */
+/* PRODUCTS */
 const products = [
   {
     id: 1,
@@ -29,36 +28,33 @@ const products = [
   },
 ];
 
-
-/* ✅ COMPONENT BELOW */
 export default function ShopPage() {
   return (
     <div className="page shop-page">
       <h1>TriFlow Plumbing Store</h1>
       <p>Professional plumbing supplies</p>
 
-      <div className="product-grid header">
-        <span>Image</span>
-        <span>Description</span>
-        <span>Diameter</span>
-        <span>Length</span>
-        <span>Price</span>
-        <span></span>
+      <div className="product-list">
+        {products.map((item) => (
+          <div key={item.id} className="product-row">
+            <img src={item.image} alt={item.description} />
+
+            <div className="product-info">
+              <strong>{item.description}</strong>
+              <span>
+                {item.diameter} • {item.length}
+              </span>
+            </div>
+
+            <div className="product-actions">
+              <div className="product-price">R{item.price}</div>
+              <Link href="/register" className="buy-btn">
+                Buy
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
-
-      {products.map((item) => (
-        <div key={item.id} className="product-grid">
-          <img src={item.image} alt={item.description} />
-          <span>{item.description}</span>
-          <span>{item.diameter}</span>
-          <span>{item.length}</span>
-          <strong>R{item.price}</strong>
-
-          <Link href="/register" className="buy">
-            Buy
-          </Link>
-        </div>
-      ))}
     </div>
   );
 }

@@ -1,16 +1,39 @@
 "use client";
-import Link from "next/link";
 
-export default function Profile() {
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { app } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
+
+export default function ProfilePage() {
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const auth = getAuth(app);
+    return onAuthStateChanged(auth, (u) => {
+      if (!u) router.push("/login");
+      setUser(u);
+    });
+  }, []);
+
+  if (!user) return <p>Loading...</p>;
+
   return (
-    <div className="page">
-      <h1>Your Account</h1>
+    <div className="profile-page">
+      <h1>My Profile</h1>
 
-      <ul>
-        <li><Link href="/orders">My Orders</Link></li>
-        <li><Link href="/payments">Payment Methods</Link></li>
-        <li><Link href="/contact">Contact Support</Link></li>
-      </ul>
+      <p><strong>Email:</strong> {user.email}</p>
+      <p><strong>User ID:</strong> {user.uid}</p>
+
+      <button
+        onClick={() => {
+          signOut(getAuth(app));
+          router.push("/login");
+        }}
+      >
+        Log out
+      </button>
     </div>
   );
 }
