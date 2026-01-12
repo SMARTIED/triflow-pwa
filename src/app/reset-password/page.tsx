@@ -1,30 +1,25 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { getFirebaseAuth } from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleReset() {
-    if (!email) {
-      setMessage("Please enter your email");
-      return;
-    }
+    setError("");
+    setMessage("");
 
     try {
-      setLoading(true);
-      const auth = getFirebaseAuth();
       await sendPasswordResetEmail(auth, email);
-      setMessage("Password reset link sent to your email");
+      setMessage("Password reset email sent. Check your inbox.");
     } catch (err: any) {
-      console.error(err);
-      setMessage(err.message || "Reset failed");
-    } finally {
-      setLoading(false);
+      setError(err.message || "Failed to send reset email");
     }
   }
 
@@ -34,16 +29,15 @@ export default function ResetPasswordPage() {
 
       <input
         type="email"
-        placeholder="Your email"
+        placeholder="Enter your email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
-      <button onClick={handleReset} disabled={loading}>
-        {loading ? "Sending..." : "Send reset link"}
-      </button>
+      <button onClick={handleReset}>Send Reset Link</button>
 
-      {message && <p>{message}</p>}
+      {message && <p style={{ color: "green" }}>{message}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 }
