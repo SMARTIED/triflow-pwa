@@ -1,19 +1,19 @@
-import Link from "next/link";
-
-export default function Disclaimer() {
+export default function DisclaimerPage() {
   return (
     <div className="page">
       <h1>Disclaimer</h1>
+
       <p>
-        TriFlow Plumbing provides plumbing products at customers request. Installation should be
-        done by qualified plumbers. Prices may change without notice.
+        The information provided by TriFlow Plumbing is for general
+        informational purposes only.
       </p>
-      <Link href="/" className="btn">Back</Link>
+
+      {/* FOOTER MUST BE INSIDE JSX */}
+      <footer style={{ marginTop: "3rem", opacity: 0.8 }}>
+        <p>TriFlow Plumbing Supplies</p>
+        <p>📞 071-234-5678</p>
+        <p>✉ support@triflow.co.za</p>
+      </footer>
     </div>
   );
 }
-<footer>
-  <p>TriFlow Plumbing Supplies</p>
-  <p>📞 071-234-5678</p>
-  <p>✉ support@triflow.co.za</p>
-</footer>
