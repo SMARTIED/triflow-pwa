@@ -9,3 +9,4 @@ const RegisterClient = dynamic(() => import("./RegisterClient"), {
 export default function RegisterPage() {
   return <RegisterClient />;
 }
+
