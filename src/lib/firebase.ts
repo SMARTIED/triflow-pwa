@@ -11,9 +11,8 @@ const firebaseConfig = {
 };
 
 export function getFirebaseAuth() {
-  // 🚫 Prevent Firebase from initializing on the server
   if (typeof window === "undefined") {
-    return null;
+    throw new Error("Firebase auth called on the server");
   }
 
   const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
