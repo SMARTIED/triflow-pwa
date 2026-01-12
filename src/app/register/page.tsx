@@ -1,8 +1,4 @@
-import dynamic from "next/dynamic";
-
-const RegisterClient = dynamic(() => import("./RegisterClient"), {
-  ssr: false,
-});
+import RegisterClient from "./RegisterClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

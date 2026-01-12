@@ -1,12 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirebaseAuth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 
 export default function RegisterClient() {
   const router = useRouter();
@@ -31,7 +28,6 @@ export default function RegisterClient() {
 
       router.push("/profile");
     } catch (err: any) {
-      console.error(err);
       setError(err.message || "Authentication failed");
     } finally {
       setLoading(false);
@@ -42,31 +38,15 @@ export default function RegisterClient() {
     <div className="auth-page">
       <h1>{mode === "register" ? "Create Account" : "Login"}</h1>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
+      <input value={password} onChange={e => setPassword(e.target.value)} type="password" />
 
       <button onClick={handleSubmit} disabled={loading}>
         {loading ? "Please wait..." : mode === "register" ? "Register" : "Login"}
       </button>
 
-      <p
-        style={{ cursor: "pointer", marginTop: "1rem" }}
-        onClick={() => setMode(mode === "register" ? "login" : "register")}
-      >
-        {mode === "register"
-          ? "Already have an account? Login"
-          : "Need an account? Register"}
+      <p onClick={() => setMode(mode === "register" ? "login" : "register")}>
+        {mode === "register" ? "Already have an account? Login" : "Need an account? Register"}
       </p>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
