@@ -1,28 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { auth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirebaseAuth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 
 export default function RegisterClient() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const register = async () => {
+  async function handleRegister() {
+    setError("");
     try {
+      const auth = getFirebaseAuth();
       await createUserWithEmailAndPassword(auth, email, password);
-      alert("Account created");
+      router.push("/profile");
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || "Registration failed");
     }
-  };
+  }
 
   return (
     <div className="auth-page">
       <h1>Create Account</h1>
 
       <input
+        type="email"
         placeholder="Email"
         value={email}
         onChange={e => setEmail(e.target.value)}
@@ -35,7 +40,7 @@ export default function RegisterClient() {
         onChange={e => setPassword(e.target.value)}
       />
 
-      <button onClick={register}>Register</button>
+      <button onClick={handleRegister}>Register</button>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
