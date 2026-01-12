@@ -33,9 +33,19 @@ export default function CheckoutPage() {
         <input type="hidden" name="return_url" value="https://triflow-pwa.vercel.app/profile" />
         <input type="hidden" name="cancel_url" value="https://triflow-pwa.vercel.app/cart" />
 
-        <button className="btn" type="submit">
-          Pay with PayFast
-        </button>
+        <button
+  type="button"
+  onClick={() => {
+    if (
+      confirm("By continuing you agree to our terms, delivery policy and refund policy.")
+    ) {
+      document.querySelector("form")?.submit();
+    }
+  }}
+>
+  Pay with PayFast
+</button>
+
       </form>
     </div>
   );

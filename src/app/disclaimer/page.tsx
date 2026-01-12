@@ -12,3 +12,8 @@ export default function Disclaimer() {
     </div>
   );
 }
+<footer>
+  <p>TriFlow Plumbing Supplies</p>
+  <p>📞 071-234-5678</p>
+  <p>✉ support@triflow.co.za</p>
+</footer>

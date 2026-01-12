@@ -103,6 +103,17 @@ html, body {
   font-weight: 700;
   text-decoration: none;
 }
+.product-card img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 input {
   width: 100%;
