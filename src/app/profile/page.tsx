@@ -1,37 +1,50 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Profile() {
+export default function ProfilePage() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (!stored) {
+    const storedUser = localStorage.getItem("user");
+
+    if (!storedUser) {
       router.push("/register");
-    } else {
-      setUser(JSON.parse(stored));
+      return;
     }
-  }, []);
+
+    setUser(JSON.parse(storedUser));
+  }, [router]);
+
+  if (!user) return null;
 
   return (
     <div className="page">
-      <h1>My Profile</h1>
-      {user && (
-        <>
-          <p>Email: {user.email}</p>
-          <button onClick={() => router.push("/checkout")}>
-            Proceed to Checkout
-          </button>
-          <button onClick={() => {
+      <h1>Your Profile</h1>
+
+      <p><strong>Email:</strong> {user.email}</p>
+
+      <div style={{ marginTop: "2rem" }}>
+        <button
+          className="primary-btn"
+          onClick={() => router.push("/shop")}
+        >
+          Go to Shop
+        </button>
+
+        <button
+          className="secondary-btn"
+          style={{ marginLeft: "1rem" }}
+          onClick={() => {
             localStorage.removeItem("user");
-            router.push("/");
-          }}>
-            Logout
-          </button>
-        </>
-      )}
+            router.push("/register");
+          }}
+        >
+          Log out
+        </button>
+      </div>
     </div>
   );
 }
