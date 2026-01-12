@@ -20,39 +20,28 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit() {
-    setError("");
-    setLoading(true);
+  setError("");
+  setLoading(true);
 
-    try {
-      let userCred;
+  try {
+    const auth = getFirebaseAuth();
+    if (!auth) return;
 
-      if (mode === "register") {
-        userCred = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-      } else {
-        userCred = await signInWithEmailAndPassword(auth, email, password);
-      }
-
-      // Store user safely
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          uid: userCred.user.uid,
-          email: userCred.user.email,
-        })
-      );
-
-      router.push("/profile");
-    } catch (err: any) {
-      console.error(err);
-      setError(err.message || "Authentication failed");
-    } finally {
-      setLoading(false);
+    if (mode === "register") {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } else {
+      await signInWithEmailAndPassword(auth, email, password);
     }
+
+    localStorage.setItem("user", email);
+    router.push("/shop");
+  } catch (err: any) {
+    console.error(err);
+    setError(err.message || "Authentication failed");
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div className="auth-page">
