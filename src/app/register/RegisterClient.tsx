@@ -15,7 +15,8 @@ export default function RegisterClient() {
     setError("");
     try {
       const auth = getFirebaseAuth();
-      await createUserWithEmailAndPassword(auth, email, password);
+await createUserWithEmailAndPassword(auth, email, password);
+
       router.push("/profile");
     } catch (err: any) {
       setError(err.message || "Registration failed");
