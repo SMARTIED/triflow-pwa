@@ -1,5 +1,3 @@
-"use client";
-
 import dynamic from "next/dynamic";
 
 const RegisterClient = dynamic(() => import("./RegisterClient"), {
@@ -9,4 +7,3 @@ const RegisterClient = dynamic(() => import("./RegisterClient"), {
 export default function RegisterPage() {
   return <RegisterClient />;
 }
-
