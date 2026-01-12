@@ -1,3 +1,4 @@
+jsx
 import RegisterClient from "./RegisterClient";
 
 export const revalidate = 0;
