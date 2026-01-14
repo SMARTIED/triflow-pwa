@@ -1,35 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import { auth } from "@/lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
-
-export const dynamic = "force-dynamic";
+import { getFirebaseAuth } from "@/lib/firebase";
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const reset = async () => {
+  async function handleReset() {
     try {
+      const auth = getFirebaseAuth();
       await sendPasswordResetEmail(auth, email);
       setMessage("Password reset email sent");
-    } catch (e) {
+    } catch {
       setMessage("Reset failed");
     }
-  };
+  }
 
   return (
     <div className="auth-page">
       <h1>Reset Password</h1>
 
       <input
-        placeholder="Email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
       />
 
-      <button onClick={reset}>Send reset link</button>
+      <button onClick={handleReset}>Send reset link</button>
 
       {message && <p>{message}</p>}
     </div>
